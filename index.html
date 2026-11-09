@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#172554">
+<title>עולם הקניות | הכל במקום אחד</title>
+<style>
+:root{--navy:#172554;--blue:#2563eb;--bg:#f5f7fb;--ink:#172033;--muted:#64748b;--line:#e5eaf2}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,"Noto Sans Hebrew",sans-serif;background:var(--bg);color:var(--ink)}
+header{background:linear-gradient(120deg,#172554,#2563eb);color:white;padding:24px 16px 30px}
+.wrap{max-width:1100px;margin:auto;padding:0 16px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand{font-size:27px;font-weight:800}.tag{opacity:.9;margin-top:7px}
+.pill{background:#ffffff20;border:1px solid #ffffff55;color:white;padding:9px 13px;border-radius:30px;font-size:14px}
+.hero{padding:25px 0 5px}.hero h1{font-size:clamp(27px,5vw,42px);margin:0 0 10px}.hero p{margin:0;line-height:1.6;max-width:650px;color:#e7efff}
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
+input,select,button{font:inherit}input,select{border:1px solid var(--line);background:white;border-radius:12px;padding:12px;min-width:0}
+#search{flex:1;min-width:180px}
+button,.btn{border:0;border-radius:12px;padding:11px 15px;background:var(--blue);color:white;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
+button.secondary{background:#e8eefc;color:var(--navy)}button.dark{background:var(--navy)}
+.categories{display:flex;gap:8px;overflow:auto;padding:2px 0 14px}
+.categories button{white-space:nowrap;background:white;color:var(--navy);border:1px solid var(--line)}
+.categories button.active{background:var(--navy);color:white}
+.section-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:10px 0 14px}
+h2{font-size:22px;margin:0}.muted{color:var(--muted);font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:15px;padding-bottom:35px}
+.card{background:white;border:1px solid var(--line);border-radius:17px;overflow:hidden;box-shadow:0 5px 18px #1725540a}
+.photo{height:175px;background:#eef2ff;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover}.emoji{font-size:62px}
+.info{padding:13px}.category{font-size:12px;color:var(--blue);font-weight:700}.name{font-size:17px;font-weight:700;margin:6px 0}.desc{font-size:13px;color:var(--muted);min-height:34px;line-height:1.4}
+.price{font-size:19px;font-weight:800;margin:11px 0}.card .btn{width:100%;text-align:center}
+footer{background:#111c3e;color:#e5eaff;padding:25px 16px;margin-top:10px;text-align:center;line-height:1.7}
+.admin{background:white;border:1px solid var(--line);border-radius:17px;padding:16px;margin:5px 0 28px}
+.admin h2{margin-bottom:12px}.formgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:9px}
+.formgrid input,.formgrid select{width:100%}.admin-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.note{font-size:13px;color:var(--muted);line-height:1.6;margin-top:10px}
+.hidden{display:none!important}
+@media(max-width:520px){.brand{font-size:23px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.photo{height:135px}.info{padding:10px}.name{font-size:15px}.price{font-size:17px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="wrap">
+  <div class="top"><div><div class="brand">🛍️ עולם הקניות</div><div class="tag">הכל במקום אחד</div></div><span class="pill">קונים בקלות • מזמינים בוואטסאפ</span></div>
+  <div class="hero"><h1>ברוכים הבאים לעולם הקניות!</h1><p>מבחר מוצרים לבית, לטכנולוגיה, לאופנה, לילדים וליום־יום. מצאתם משהו שאהבתם? לחצו להזמנה ונמשיך בוואטסאפ.</p></div>
+ </div>
+</header>
+<main class="wrap">
+ <div class="controls"><input id="search" placeholder="🔎 חיפוש מוצר..." aria-label="חיפוש מוצר"><select id="sort"><option value="default">מיון רגיל</option><option value="low">מחיר: מהנמוך לגבוה</option><option value="high">מחיר: מהגבוה לנמוך</option></select><button class="secondary" id="adminToggle">ניהול מוצרים</button></div>
+ <nav class="categories" id="categories"></nav>
+ <div class="section-head"><h2 id="listTitle">המוצרים שלנו</h2><span class="muted" id="count"></span></div>
+ <section class="grid" id="products"></section>
+ <section class="admin hidden" id="admin">
+  <h2>ניהול מוצרים במכשיר הזה</h2>
+  <div class="formgrid">
+   <input id="pname" placeholder="שם המוצר">
+   <input id="pprice" type="number" min="0" step="0.01" placeholder="מחיר בש״ח">
+   <select id="pcat"><option>כללי</option><option>אלקטרוניקה</option><option>לבית ולמטבח</option><option>אופנה</option><option>ילדים וצעצועים</option><option>יופי וטיפוח</option><option>ספורט ורכב</option></select>
+   <input id="pimage" placeholder="קישור לתמונה (https://...)">
+   <input id="pdesc" placeholder="תיאור קצר">
+  </div>
+  <div class="admin-actions"><button id="addProduct">הוסף מוצר</button><button class="secondary" id="exportProducts">גיבוי המוצרים לקובץ</button><label class="btn" for="importFile">ייבוא גיבוי</label><input id="importFile" class="hidden" type="file" accept="application/json"></div>
+  <p class="note">חשוב: מוצרים שתוסיף כאן נשמרים בדפדפן ובמכשיר הזה בלבד. כדי שכל הלקוחות יראו מוצרים חדשים מכל מכשיר, צריך לחבר בהמשך מערכת ניהול משותפת (שרת/מסד נתונים). מספר WhatsApp מוגדר כרגע כפרט שיש להחליף בקוד לפני הפרסום.</p>
+ </section>
+</main>
+<footer>© <span id="year"></span> עולם הקניות • כל הזכויות שמורות<br>להזמנות ולשאלות – דרך כפתורי WhatsApp באתר</footer>
+<script>
+const WHATSAPP_NUMBER = "972500000000"; // החלף למספר שלך: קידומת 972, בלי 0 ובלי סימנים
+const seed = [
+ {id:1,name:"אוזניות אלחוטיות",price:79,cat:"אלקטרוניקה",desc:"אוזניות נוחות לשימוש יומיומי",emoji:"🎧"},
+ {id:2,name:"בקבוק שתייה מעוצב",price:39,cat:"לבית ולמטבח",desc:"בקבוק רב־פעמי לדרך ולעבודה",emoji:"🥤"},
+ {id:3,name:"תיק יום־יומי",price:99,cat:"אופנה",desc:"תיק שימושי ליום־יום",emoji:"👜"},
+ {id:4,name:"משחק יצירה לילדים",price:55,cat:"ילדים וצעצועים",desc:"פעילות יצירתית ומהנה",emoji:"🧩"},
+ {id:5,name:"ערכת טיפוח",price:69,cat:"יופי וטיפוח",desc:"מארז טיפוח לדוגמה",emoji:"🧴"},
+ {id:6,name:"אביזר שימושי לרכב",price:45,cat:"ספורט ורכב",desc:"פתרון קטן ונוח לנסיעות",emoji:"🚗"}
+];
+let products = JSON.parse(localStorage.getItem("olamProducts") || "null") || seed;
+let active = "הכל";
+const cats = ["הכל","אלקטרוניקה","לבית ולמטבח","אופנה","ילדים וצעצועים","יופי וטיפוח","ספורט ורכב","כללי"];
+const el = id => document.getElementById(id);
+function save(){localStorage.setItem("olamProducts",JSON.stringify(products))}
+function renderCats(){el("categories").innerHTML=cats.map(c=>`<button class="${active===c?'active':''}" data-cat="${c}">${c}</button>`).join("");document.querySelectorAll("[data-cat]").forEach(b=>b.onclick=()=>{active=b.dataset.cat;renderCats();render()})}
+function render(){
+ let q=el("search").value.trim().toLowerCase();
+ let list=products.filter(p=>(active==="הכל"||p.cat===active)&&(`${p.name} ${p.desc} ${p.cat}`).toLowerCase().includes(q));
+ if(el("sort").value==="low")list.sort((a,b)=>a.price-b.price);
+ if(el("sort").value==="high")list.sort((a,b)=>b.price-a.price);
+ el("count").textContent=`${list.length} מוצרים`;
+ el("products").innerHTML=list.map(p=>`<article class="card"><div class="photo">${p.image?`<img src="${esc(p.image)}" alt="${esc(p.name)}" onerror="this.style.display='none'">`:`<span class="emoji">${p.emoji||"🛍️"}</span>`}</div><div class="info"><div class="category">${esc(p.cat)}</div><div class="name">${esc(p.name)}</div><div class="desc">${esc(p.desc||"")}</div><div class="price">₪${Number(p.price).toLocaleString("he-IL")}</div><a class="btn" target="_blank" rel="noopener" href="${orderLink(p)}">הזמנה בוואטסאפ</a></div></article>`).join("")||'<p class="muted">לא נמצאו מוצרים. נסו חיפוש אחר.</p>';
+}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function orderLink(p){let msg=`שלום, אני מעוניין להזמין: ${p.name} במחיר ₪${p.price}. אשמח לפרטים.`;return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`}
+el("search").addEventListener("input",render);el("sort").addEventListener("change",render);
+el("adminToggle").onclick=()=>el("admin").classList.toggle("hidden");
+el("addProduct").onclick=()=>{let name=el("pname").value.trim(),price=Number(el("pprice").value);if(!name||!Number.isFinite(price)||price<0){alert("נא להזין שם מוצר ומחיר תקין");return}products.unshift({id:Date.now(),name,price,cat:el("pcat").value,image:el("pimage").value.trim(),desc:el("pdesc").value.trim()});save();["pname","pprice","pimage","pdesc"].forEach(x=>el(x).value="");active="הכל";renderCats();render();alert("המוצר נשמר בדפדפן במכשיר הזה.")};
+el("exportProducts").onclick=()=>{let blob=new Blob([JSON.stringify(products,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="olam-hakniyot-products.json";a.click();URL.revokeObjectURL(a.href)};
+el("importFile").onchange=async e=>{try{let f=e.target.files[0];if(!f)return;let data=JSON.parse(await f.text());if(!Array.isArray(data))throw Error();products=data;save();render()}catch{alert("קובץ גיבוי לא תקין")}};
+el("year").textContent=new Date().getFullYear();renderCats();render();
+</script>
+</body></html>

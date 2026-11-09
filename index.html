@@ -61,14 +61,14 @@ footer{background:#111c3e;color:#e5eaff;padding:25px 16px;margin-top:10px;text-a
    <input id="pdesc" placeholder="תיאור קצר">
   </div>
   <div class="admin-actions"><button id="addProduct">הוסף מוצר</button><button class="secondary" id="exportProducts">גיבוי המוצרים לקובץ</button><label class="btn" for="importFile">ייבוא גיבוי</label><input id="importFile" class="hidden" type="file" accept="application/json"></div>
-  <p class="note">חשוב: מוצרים שתוסיף כאן נשמרים בדפדפן ובמכשיר הזה בלבד. כדי שכל הלקוחות יראו מוצרים חדשים מכל מכשיר, צריך לחבר בהמשך מערכת ניהול משותפת (שרת/מסד נתונים). מספר WhatsApp מוגדר כרגע כפרט שיש להחליף בקוד לפני הפרסום.</p>
+  <p class="note">חשוב: מוצרים שתוסיף כאן נשמרים בדפדפן ובמכשיר הזה בלבד. כדי שכל הלקוחות יראו מוצרים חדשים מכל מכשיר, צריך לחבר בהמשך מערכת ניהול משותפת (שרת/מסד נתונים). הזמנות נשלחות למספר WhatsApp של החנות.</p>
  </section>
 </main>
 <footer>© <span id="year"></span> עולם הקניות • כל הזכויות שמורות<br>להזמנות ולשאלות – דרך כפתורי WhatsApp באתר</footer>
 <script>
-const WHATSAPP_NUMBER = "9720538205780"; // החלף למספר שלך: קידומת 972, בלי 0 ובלי סימנים
+const WHATSAPP_NUMBER = "972538205780"; // מספר WhatsApp של החנות
 const seed = [
- {id:1,name:"אוזניות אלחוטיות",price:79,cat:"אלקטרוניקה",desc:"אוזניות נוחות לשימוש יומיומי",emoji:"🎧"},
+ {id:1,name:"אוזניות בלוטוס",price:29.90,cat:"אלקטרוניקה",desc:"אוזניות אלחוטיות לשימוש יומיומי. יש לבדוק התאמה ומפרט מול הספק.",image:"headphones.png"},
  {id:2,name:"בקבוק שתייה מעוצב",price:39,cat:"לבית ולמטבח",desc:"בקבוק רב־פעמי לדרך ולעבודה",emoji:"🥤"},
  {id:3,name:"תיק יום־יומי",price:99,cat:"אופנה",desc:"תיק שימושי ליום־יום",emoji:"👜"},
  {id:4,name:"משחק יצירה לילדים",price:55,cat:"ילדים וצעצועים",desc:"פעילות יצירתית ומהנה",emoji:"🧩"},

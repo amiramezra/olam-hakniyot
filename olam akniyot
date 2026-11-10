@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>עולם הקניות</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial;background:#f4f6fa;color:#222}
+header{background:#172554;color:white;text-align:center;padding:25px 12px}
+header h1{margin:0;font-size:30px}
+header p{margin:10px 0 0}
+nav{background:#1e40af;padding:13px;text-align:center}
+nav a{color:white;text-decoration:none;margin:10px;font-weight:bold}
+.hero{text-align:center;padding:35px 15px;background:#dbeafe}
+.hero h2{font-size:25px}
+.search{width:90%;max-width:450px;padding:13px;border:1px solid #ccc;border-radius:10px}
+.categories{text-align:center;padding:15px}
+.categories button{padding:10px;margin:5px;border:0;border-radius:20px;background:#dbeafe}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:15px;padding:15px;max-width:1000px;margin:auto}
+.product{background:white;border-radius:13px;padding:15px;text-align:center;box-shadow:0 2px 8px #ddd}
+.picture{font-size:55px;background:#eff6ff;border-radius:10px;padding:20px}
+.price{font-size:20px;color:#16a34a;font-weight:bold}
+.buy{display:block;background:#16a34a;color:white;text-decoration:none;padding:12px;border-radius:8px;margin-top:12px}
+footer{text-align:center;background:#172554;color:white;padding:25px;margin-top:25px}
+</style>
+</head>
+<body>
+
+<header>
+<h1>🌍 עולם הקניות</h1>
+<p>כל הקניות במקום אחד – במחירים שכדאי לבדוק!</p>
+</header>
+
+<nav>
+<a href="#home">ראשי</a>
+<a href="#products">מוצרים</a>
+<a href="#about">אודות</a>
+</nav>
+
+<section class="hero" id="home">
+<h2>ברוכים הבאים לעולם הקניות!</h2>
+<p>מוצרים מעניינים, גאדג'טים ומציאות מכל העולם</p>
+<input class="search" id="search" placeholder="חיפוש מוצר..." oninput="filterProducts()">
+</section>
+
+<div class="categories">
+<button onclick="showCategory('all')">הכל</button>
+<button onclick="showCategory('חשמל')">אלקטרוניקה</button>
+<button onclick="showCategory('בית')">לבית</button>
+<button onclick="showCategory('אופנה')">אופנה</button>
+</div>
+
+<h2 style="text-align:center" id="products">🔥 המוצרים שלנו</h2>
+
+<div class="products" id="productList">
+
+<div class="product" data-category="חשמל">
+<div class="picture">🎧</div>
+<h3>אוזניות Bluetooth</h3>
+<p>אוזניות אלחוטיות</p>
+<div class="price">29.90 ₪</div>
+<a class="buy" href="#" target="_blank">לרכישה</a>
+</div>
+
+<div class="product" data-category="בית">
+<div class="picture">💡</div>
+<h3>תאורת LED</h3>
+<p>תאורה מיוחדת לבית</p>
+<div class="price">מחיר באתר</div>
+<a class="buy" href="#" target="_blank">לרכישה</a>
+</div>
+
+<div class="product" data-category="חשמל">
+<div class="picture">⌚</div>
+<h3>שעון חכם</h3>
+<p>שעון חכם לספורט</p>
+<div class="price">מחיר באתר</div>
+<a class="buy" href="#" target="_blank">לרכישה</a>
+</div>
+
+<div class="product" data-category="בית">
+<div class="picture">🏠</div>
+<h3>אביזרים לבית</h3>
+<p>מוצרים שימושיים לבית</p>
+<div class="price">מחיר באתר</div>
+<a class="buy" href="#" target="_blank">לרכישה</a>
+</div>
+
+<div class="product" data-category="אופנה">
+<div class="picture">🕶️</div>
+<h3>משקפי שמש</h3>
+<p>עיצוב אופנתי</p>
+<div class="price">מחיר באתר</div>
+<a class="buy" href="#" target="_blank">לרכישה</a>
+</div>
+
+<div class="product" data-category="חשמל">
+<div class="picture">🔌</div>
+<h3>גאדג'טים</h3>
+<p>אביזרים אלקטרוניים</p>
+<div class="price">מחיר באתר</div>
+<a class="buy" href="#" target="_blank">לרכישה</a>
+</div>
+
+</div>
+
+<section id="about" style="text-align:center;padding:20px">
+<h2>קונים חכם בעולם הקניות</h2>
+<p>אנחנו מרכזים עבורכם מוצרים וקישורים לחנויות ברשת.</p>
+<p>חלק מהקישורים עשויים להיות קישורי שותפים, שבאמצעותם אנו עשויים לקבל עמלה ללא תוספת מחיר לקונה.</p>
+</section>
+
+<footer>
+<p>© כל הזכויות שמורות – עולם הקניות</p>
+</footer>
+
+<script>
+function showCategory(category){
+document.querySelectorAll('.product').forEach(p=>{
+p.style.display=category==='all'||p.dataset.category===category?'block':'none';
+});
+}
+function filterProducts(){
+let q=document.getElementById('search').value.toLowerCase();
+document.querySelectorAll('.product').forEach(p=>{
+p.style.display=p.innerText.toLowerCase().includes(q)?'block':'none';
+});
+}
+</script>
+
+</body>
+</html>

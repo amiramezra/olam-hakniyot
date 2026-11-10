@@ -1,9 +1,10 @@
-const CACHE_NAME = "olam-hakniyot-v1";
+const CACHE_NAME = "olam-hakniyot-v2";
 
 const FILES_TO_CACHE = [
-  "./",
   "./olam-hakniyot-affiliate-2.html",
-  "./manifest.json"
+  "./manifest.json",
+  "./icon-192.png",
+  "./icon-512.png"
 ];
 
 self.addEventListener("install", event => {
